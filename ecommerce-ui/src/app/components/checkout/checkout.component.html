@@ -1,0 +1,110 @@
+<app-header></app-header>
+<div style="margin-top: 50px" class="container">
+  <div>
+    <h2>Order</h2>
+    <p class="lead">Order confirmation.</p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div
+        style="border: 2px dashed black"
+        class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 co-md-offset-3"
+      >
+        <div class="text-center">
+          <h2>Receipt</h2>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <address>
+              <strong>Shipping Address</strong><br />
+              {{ cart.customer.customerAddress }}
+            </address>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+            <p><strong>Order Date</strong>: {{ getCurrentDate() }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <address>
+              <strong>Billing Address</strong><br />
+              {{ cart.customer.customerAddress }}
+              <br />
+            </address>
+          </div>
+        </div>
+        <div class="row">
+          <table class="table table-hover">
+            <caption></caption>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th class="text-center">Unit Price</th>
+                <th class="text-center">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of cartItems">
+                <td class="col-md-6">
+                  <em>{{ item.product.productName }}</em>
+                </td>
+                <td class="col-md-1" style="text-align: center">
+                  {{ item.quantity }}
+                </td>
+                <td class="col-md-3" style="text-align: center">
+                  {{ item.product.price }}
+                </td>
+                <td class="col-md-2" style="text-align: center">
+                  {{ item.totalPrice }}
+                </td>
+              </tr>
+
+              <tr>
+                <td></td>
+                <td></td>
+                <td class="text-right">
+                  <h4><strong>Grand Total: </strong>{{ cart.grandTotal }}</h4>
+                </td>
+                <td class="text-center text-danger">
+                  <h4><strong></strong></h4>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br /><br />
+        <a
+          ><button
+            mat-stroked-button
+            color="primary"
+            type="button"
+            routerLink="/customer/cart"
+          >
+            Back
+          </button></a
+        >&nbsp;
+        <button
+          mat-stroked-button
+          color="primary"
+          type="submit"
+          (click)="goToPayment(cartId)"
+        >
+          Payment Options</button
+        >&nbsp;
+        <a
+          ><button
+            mat-stroked-button
+            color="primary"
+            type="button"
+            routerLink="/productList"
+          >
+            Cancel
+          </button></a
+        >
+        <br /><br />
+      </div>
+    </div>
+  </div>
+</div>

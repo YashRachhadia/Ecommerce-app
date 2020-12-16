@@ -1,0 +1,142 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row top-space">
+    <div style="margin-left: 280px" class="offset-2 col-6">
+      <div class="card set-background shadow p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+          <h1 style="text-align: center">Add Product</h1>
+          <form [formGroup]="addProductForm">
+            <div class="form-group">
+              <input
+                [class.is-invalid]="
+                  addProductForm.get('productName').invalid &&
+                  addProductForm.get('productName').touched
+                "
+                type="text"
+                class="form-control"
+                name="productName"
+                formControlName="productName"
+                placeholder="Product Name"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                [class.is-invalid]="
+                  addProductForm.get('productCategory').invalid &&
+                  addProductForm.get('productCategory').touched
+                "
+                type="text"
+                class="form-control"
+                name="productCategory"
+                formControlName="productCategory"
+                placeholder="Product Category"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                [class.is-invalid]="
+                  addProductForm.get('productDescription').invalid &&
+                  addProductForm.get('productDescription').touched
+                "
+                type="text"
+                class="form-control"
+                name="productDescription"
+                formControlName="productDescription"
+                placeholder="Product Description"
+              />
+            </div>
+            <div class="form-group">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="status"
+                  name="status"
+                  formControlName="status"
+                  value="available"
+                />
+                <label class="form-check-label" for="status">Available</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="status"
+                  name="status"
+                  formControlName="status"
+                  value="unavailable"
+                />
+                <label class="form-check-label" for="status">Unavailable</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <input
+                [class.is-invalid]="
+                  addProductForm.get('stock').invalid &&
+                  addProductForm.get('stock').touched
+                "
+                type="number"
+                class="form-control"
+                name="stock"
+                formControlName="stock"
+                placeholder="Product Stock"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                [class.is-invalid]="
+                  addProductForm.get('manufacturer').invalid &&
+                  addProductForm.get('manufacturer').touched
+                "
+                type="text"
+                class="form-control"
+                name="manufacturer"
+                formControlName="manufacturer"
+                placeholder="Product Manufacturer"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                [class.is-invalid]="
+                  addProductForm.get('price').invalid &&
+                  addProductForm.get('price').touched
+                "
+                type="number"
+                class="form-control"
+                name="price"
+                formControlName="price"
+                placeholder="Product Price"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="file"
+                class="form-control-file"
+                name="productImage"
+                accept="image/**"
+                (change)="onFileChange($event)"
+              />
+            </div>
+            <button
+              type="submit"
+              (click)="addProduct(addProductForm)"
+              class="btn btn-primary"
+            >
+              Submit</button
+            >&nbsp;&nbsp;
+            <button
+              type="button"
+              routerLink="/admin/productInventory"
+              class="btn btn-primary"
+            >
+              Back
+            </button>
+          </form>
+        </div>
+      </div>
+      <div [hidden]="!success">
+        <div class="alert alert-success">Product added successfully!</div>
+      </div>
+    </div>
+  </div>
+</div>

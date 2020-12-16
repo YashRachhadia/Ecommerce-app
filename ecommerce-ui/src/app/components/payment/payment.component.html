@@ -1,0 +1,118 @@
+<app-header></app-header>
+<h2 style="text-align: center; font-size: 2em; margin-top: 50px">
+  Payment Portal
+</h2>
+<br /><br />
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-lg-6 col-md-6">
+      <form [formGroup]="onlinePaymentForm">
+        <div class="card">
+          <div class="text-center"><h2>Pay Online</h2></div>
+          <div class="card-body">
+            <p class="card-text form-group">
+              Credit Card Number:
+              <input
+                [class.is-invalid]="cardNum.invalid && cardNum.touched"
+                type="text"
+                name="cardNum"
+                placeholder="xxxxxxxxxxxxxxxx"
+                class="form-control"
+                formControlName="cardNum"
+              />
+            </p>
+            <div *ngIf="cardNum.invalid && cardNum.touched">
+              <div
+                class="alert alert-danger"
+                *ngIf="
+                  cardNum.errors?.required ||
+                  cardNum.errors?.minlength ||
+                  cardNum.errors?.maxlength ||
+                  cardNum.errors?.pattern
+                "
+              >
+                Card Number of exact 16 digits is required
+              </div>
+            </div>
+            <p class="card-text form-group">
+              CVV:
+              <input
+                [class.is-invalid]="cvv.invalid && cvv.touched"
+                type="text"
+                placeholder="xxx"
+                name="cvv"
+                class="form-control"
+                formControlName="cvv"
+              />
+            </p>
+            <div *ngIf="cvv.invalid && cvv.touched">
+              <div
+                class="alert alert-danger"
+                *ngIf="
+                  cvv.errors?.required ||
+                  cvv.errors?.minlength ||
+                  cvv.errors?.maxlength ||
+                  cvv.errors?.pattern
+                "
+              >
+                CVV of exact 3 digits is required
+              </div>
+            </div>
+            <div class="text-center">
+              <p>Card Payment</p>
+              <h2>Online payment of Rs: {{ cart.grandTotal }}</h2>
+              <br />
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="payByOnline()"
+              >
+                Pay
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-sm-12 col-lg-6 col-md-6">
+      <div class="card">
+        <div class="text-center"><h2>UPI</h2></div>
+        <div class="card-body">
+          <br />
+          <div class="text-center">
+            <p>Cash On Delivery</p>
+            <br />
+            <h2>Payment of Rs : {{ cart.grandTotal }}</h2>
+            <br />
+            <button type="button" class="btn btn-primary" (click)="payByCod()">
+              Pay
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br /><br />
+  <div>
+    <button class="btn btn-danger" routerLink="/customer/cart">
+      <span
+        ><i class="fas fa-times-circle"></i>&nbsp;Cancel Payment</span
+      ></button
+    >&nbsp; &nbsp;
+    <button class="btn btn-primary" (click)="goBack()">
+      <span><i class="fas fa-hand-point-left"></i>&nbsp;Back</span>
+    </button>
+  </div>
+  <br />
+  <div [hidden]="!success">
+    <div class="text-center alert alert-success">
+      Payment Successful ! Thank you for ordering...!
+    </div>
+  </div>
+  <div [hidden]="!error">
+    <div class="text-center alert alert-danger">
+      Payment failed ! Please try again...!
+    </div>
+  </div>
+</div>

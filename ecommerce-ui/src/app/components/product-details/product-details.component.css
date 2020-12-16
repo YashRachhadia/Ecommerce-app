@@ -1,0 +1,12 @@
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-color: black;
+}
+
+h2 {
+  font-style: italic;
+  font-variant: small-caps;
+}

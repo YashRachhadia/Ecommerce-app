@@ -1,0 +1,74 @@
+<app-header></app-header>
+<div style="margin-top: 50px" class="container">
+  <section>
+    <div class="container">
+      <div>
+        <h1 style="text-align: center; font-size: 2em">Cart</h1>
+        <p class="lead">All the selected products in your shopping cart.</p>
+      </div>
+    </div>
+  </section>
+  <br />
+  <section class="container">
+    <div>
+      <div>
+        <button
+          class="btn btn-danger"
+          style="float: left"
+          (click)="clearCart(cart.cartId)"
+        >
+          <span><i class="fas fa-times-circle"></i></span>&nbsp; Clear Cart
+        </button>
+        <button
+          (click)="checkout(cart.cartId)"
+          class="btn btn-success"
+          style="float: right"
+        >
+          <span><i class="fas fa-check-circle"></i></span>&nbsp; Checkout
+        </button>
+      </div>
+      <br /><br /><br />
+      <table class="table table-hover">
+        <caption></caption>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cartItems">
+            <td>{{ item.product.productName }}</td>
+            <td>{{ item.product.price }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.totalPrice }}</td>
+            <td>
+              <button
+                (click)="removeItemFromCart(item.product.productId)"
+                class="btn btn-danger"
+              >
+                <span><i class="fas fa-trash-alt"></i></span>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <th></th>
+            <th></th>
+            <th>Grand Total</th>
+            <th>{{ calculateGrandTotal() }}</th>
+            <th></th>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <a routerLink="/productList" class="btn btn-primary">Continue Shopping</a>
+    </div>
+    <br /><br />
+    <div [hidden]="!error">
+      <div class="text-center alert alert-danger">Invalid Cart... !</div>
+    </div>
+  </section>
+</div>

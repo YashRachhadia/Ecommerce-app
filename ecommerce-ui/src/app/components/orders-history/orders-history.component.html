@@ -1,0 +1,35 @@
+<app-header></app-header>
+<div style="margin-top: 100px" class="container">
+  <div>
+    <h1 style="text-align: center; font-size: 2em">Order History</h1>
+  </div>
+  <br />
+  <table class="table table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Products</th>
+        <th>Grand Total</th>
+        <th>Order Date</th>
+        <th>Customer</th>
+        <th>Address</th>
+        <th>Fullfilled ?</th>
+        <th>Fullfillment Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of allOrders">
+        <td>
+          <span *ngFor="let temp of order.orderItems">
+            {{ temp.product.productName }} |
+          </span>
+        </td>
+        <td>{{ order.grandTotal }}</td>
+        <td>{{ order.orderDate }}</td>
+        <td>{{ order.customer.customerName }}</td>
+        <td>{{ order.customer.customerAddress }}</td>
+        <td>{{ order.isFulfilled }}</td>
+        <td>{{ order.fulfillmentDate }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,44 @@
+<app-header></app-header>
+<div style="margin-top: 100px" class="container">
+  <div>
+    <h1 style="text-align: center; font-size: 2em">Pending Orders</h1>
+  </div>
+  <br />
+  <table class="table table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Product</th>
+        <th>Grand Total</th>
+        <th>Order Date</th>
+        <th>Customer</th>
+        <th>Address</th>
+        <th>Payment Mode</th>
+        <th>Payment Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of pendingOrders">
+        <td>
+          <span *ngFor="let temp of item.orderItems">
+            {{ temp.product.productName }} |
+          </span>
+        </td>
+        <td>{{ item.grandTotal }}</td>
+        <td>{{ item.orderDate }}</td>
+        <td>{{ item.customer.customerName }}</td>
+        <td>{{ item.customer.customerAddress }}</td>
+        <td>{{ item.payment.mode }}</td>
+        <td>{{ item.payment.status }}</td>
+        <td>
+          <button
+            class="btn-success btn-fulfilled"
+            (click)="setFulfilled(item.confirmedOrderId)"
+          >
+            <span><i class="fas fa-check-circle"></i>Set as Fulfilled</span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

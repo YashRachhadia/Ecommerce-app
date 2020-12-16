@@ -1,0 +1,15 @@
+.set-background {
+  background-image: linear-gradient(
+      rgba(160, 200, 226, 0.884),
+      rgba(180, 184, 202, 0.644)
+    ),
+    url("../../../assets/images/img4.jpg");
+}
+.top-space {
+  margin-top: 50px;
+}
+
+label {
+  font-size: 17px;
+  font-weight: lighter;
+}

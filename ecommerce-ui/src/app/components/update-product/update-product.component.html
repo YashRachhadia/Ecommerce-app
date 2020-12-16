@@ -1,0 +1,135 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row top-space">
+    <div style="margin-left: 280px" class="offset-2 col-6">
+      <div class="card set-background shadow p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+          <h1 style="text-align: center">Update Product</h1>
+          <form [formGroup]="updateProductForm">
+            <div class="form-group">
+              <input
+                [class.is-invalid]="
+                  updateProductForm.get('productName').invalid &&
+                  updateProductForm.get('productName').touched
+                "
+                type="text"
+                class="form-control"
+                name="productName"
+                formControlName="productName"
+                placeholder="Product Name"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                [class.is-invalid]="
+                  updateProductForm.get('productCategory').invalid &&
+                  updateProductForm.get('productCategory').touched
+                "
+                type="text"
+                class="form-control"
+                name="productCategory"
+                formControlName="productCategory"
+                placeholder="Product Category"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                [class.is-invalid]="
+                  updateProductForm.get('productDescription').invalid &&
+                  updateProductForm.get('productDescription').touched
+                "
+                type="text"
+                class="form-control"
+                name="productDescription"
+                formControlName="productDescription"
+                placeholder="Product Description"
+              />
+            </div>
+            <div class="form-group">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="status"
+                  name="status"
+                  formControlName="status"
+                  value="available"
+                />
+                <label class="form-check-label" for="status">Available</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="status"
+                  name="status"
+                  formControlName="status"
+                  value="unavailable"
+                />
+                <label class="form-check-label" for="status">Unavailable</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <input
+                [class.is-invalid]="
+                  updateProductForm.get('stock').invalid &&
+                  updateProductForm.get('stock').touched
+                "
+                type="number"
+                class="form-control"
+                name="stock"
+                formControlName="stock"
+                placeholder="Product Stock"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                [class.is-invalid]="
+                  updateProductForm.get('manufacturer').invalid &&
+                  updateProductForm.get('manufacturer').touched
+                "
+                type="text"
+                class="form-control"
+                name="manufacturer"
+                formControlName="manufacturer"
+                placeholder="Product Manufacturer"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                [class.is-invalid]="
+                  updateProductForm.get('price').invalid &&
+                  updateProductForm.get('price').touched
+                "
+                type="number"
+                class="form-control"
+                name="price"
+                formControlName="price"
+                placeholder="Product Price"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="file"
+                class="form-control-file"
+                name="productImage"
+                accept="image/**"
+                (change)="onFileChange($event)"
+              />
+            </div>
+            <button
+              type="submit"
+              (click)="updateProduct(updateProductForm)"
+              class="btn btn-primary"
+            >
+              Update
+            </button>
+          </form>
+        </div>
+      </div>
+      <div [hidden]="!error">
+        <div class="alert alert-danger">Error updating product !</div>
+      </div>
+    </div>
+  </div>
+</div>
